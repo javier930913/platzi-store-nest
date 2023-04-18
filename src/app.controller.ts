@@ -7,7 +7,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return "Hola Mundo!";
+    return "Hola Mundo+!";
   }
 
   @Get('nuevo')  // Without slashes 
