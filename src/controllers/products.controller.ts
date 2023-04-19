@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, HttpStatus, HttpCode, Res } from '@nestjs/common';
 
 import { Response, response } from 'express'
+import {ParseIntPipe} from '../common/parse-int/parse-int.pipe'
 
 import { ProductsService  } from 'src/services/products.service';
 
@@ -29,12 +30,12 @@ export class ProductsController {
 
   @Get('/:productId')
   @HttpCode(HttpStatus.ACCEPTED)
-  getProduct( @Param('productId') productId: string) {
+  getProduct( @Param('productId', ParseIntPipe) productId: number) {
   //getProduct(@Res() response: Response, @Param('productId') productId: string) {
     //response.status(200).send({
     //  message: `product ${productId}`
     //});
-    return this.productsService.findOne(+productId)
+    return this.productsService.findOne(productId)
   }
 
   @Post()
