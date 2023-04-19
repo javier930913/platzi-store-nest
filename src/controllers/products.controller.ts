@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query, HttpStatus, Htt
 
 import { Response, response } from 'express'
 import {ParseIntPipe} from '../common/parse-int/parse-int.pipe'
+import {CreateProductDto, UpdateProductDto} from './../DTOs/products.dtos'
 
 import { ProductsService  } from 'src/services/products.service';
 
@@ -39,7 +40,7 @@ export class ProductsController {
   }
 
   @Post()
-  create(@Body() payload: any) {
+  create(@Body() payload: CreateProductDto) {
     //return {
     //  message: `Accion de crear`,
     //  payload,
@@ -48,7 +49,7 @@ export class ProductsController {
   }
 
   @Put(`:id`)
-  update(@Param(`id`) id: string, @Body() payload: any) {
+  update(@Param(`id`) id: string, @Body() payload: UpdateProductDto) {
     return this.productsService.update(Number(id), payload)
     //return {
     //  id,
